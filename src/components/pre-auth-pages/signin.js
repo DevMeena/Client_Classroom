@@ -48,6 +48,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+      // dispatch(createPost(postData));
+      // clear();
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,7 +66,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
