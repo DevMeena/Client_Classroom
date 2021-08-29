@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useContext } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,6 +15,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { useDispatch } from 'react-redux'
 import { signUp } from '../../actions/users'
+import { UserContext } from '../../UserContext';
+import { AuthContext } from '../../AuthContext';
 
 function Copyright() {
   return (
@@ -49,7 +52,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignUp() {
-
+  const { user, setUser } = useContext(UserContext);
+  const { auth, setAuth } = useContext(AuthContext);
   const [userData, setUserData] = useState({
     firstName: '',
     lastName: '',
@@ -61,9 +65,26 @@ export default function SignUp() {
   const classes = useStyles();
   const dispatch = useDispatch()
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(signUp(userData))
+  const handleSubmit = async(e) => {
+    e.preventDefault();
+    //axios request to the backend
+    const url = 'http://localhost:5000/home';
+    axios.post(url, userData)
+      .then((res) => {
+        let ok = res.data.Authenticated;
+        if (ok) {
+          setAuth(true);
+          setUser(userData);
+          console.log("its ok");
+        }
+        else {
+          setAuth(false);
+          setUser(null);
+          console.log("its not ok");
+        }
+        
+      })
+      .catch(err => console.log(err));
   }
 
   return (
@@ -73,6 +94,7 @@ export default function SignUp() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
+        {/* <div>{user.firstName}</div> */}
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
@@ -88,7 +110,7 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 value={userData.firstName}
-                onChange={(e) => setUserData({ ...userData ,firstName: e.target.value })}
+                onChange={(e) => setUserData({ ...userData, firstName: e.target.value })}
                 autoFocus
               />
             </Grid>
@@ -102,7 +124,7 @@ export default function SignUp() {
                 name="lastName"
                 autoComplete="lname"
                 value={userData.lastName}
-                onChange={(e) => setUserData({ ...userData ,lastName: e.target.value })}
+                onChange={(e) => setUserData({ ...userData, lastName: e.target.value })}
               />
             </Grid>
             <Grid item xs={12}>
@@ -115,7 +137,7 @@ export default function SignUp() {
                 name="email"
                 autoComplete="email"
                 value={userData.email}
-                onChange={(e) => setUserData({ ...userData ,email: e.target.value })}
+                onChange={(e) => setUserData({ ...userData, email: e.target.value })}
               />
             </Grid>
             <Grid item xs={12}>
@@ -129,7 +151,7 @@ export default function SignUp() {
                 id="password"
                 autoComplete="current-password"
                 value={userData.password}
-                onChange={(e) => setUserData({ ...userData ,password: e.target.value })}
+                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
               />
             </Grid>
             <Grid item xs={12}>
@@ -137,7 +159,7 @@ export default function SignUp() {
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I am a Teacher"
                 name="isTeacher"
-                onChange={(e) => ({ ...userData ,isTeacher: e.target.checked }) }
+                onChange={(e) => ({ ...userData, isTeacher: e.target.checked })}
               />
             </Grid>
           </Grid>
