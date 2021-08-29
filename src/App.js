@@ -6,6 +6,7 @@ import Front from './components/pre-auth-pages/front'
 import { signUp } from './actions/users'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Dashboard from './components/Dashboard.js'
+import Classroom from './components/classroom.js'
 
 const App = () => {
     const dispatch = useDispatch()
@@ -23,7 +24,8 @@ const App = () => {
         )} />
         <Route path='/signin' component={SignIn} />
         <Route path='/signup' component={SignUp} />
-        <Route path="/dashboard"> <Dashboard/> </Route>
+        <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/classroom" component={Classroom}/>
         </Router>
     )
 }
