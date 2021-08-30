@@ -6,7 +6,6 @@ import * as api from '../api'
 export const signUp = (user) => async (dispatch) => {
     try {
       const { data } = await api.signUp(user);
-  
       dispatch({ type: 'CREATE', payload: data });
     } catch (error) {
       console.log(error.message);
