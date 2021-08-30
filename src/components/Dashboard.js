@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 // import { faSchool } from "@fortawesome/free-solid-svg-icons";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import Toolbar from "@material-ui/core/Toolbar";
@@ -10,8 +10,17 @@ import React, { useState } from 'react'
 import Navbar from './navbar'
 import Sidebar from './sidebar'
 import ClassCard from './class_card'
+import { UserContext } from '../UserContext'
+import { AuthContext } from '../AuthContext'
 
 export const Dashboard = () => {
+  const { user, setUser } = useContext(UserContext);
+  const { auth, setAuth } = useContext(AuthContext);
+  // console.log(user);
+  //get all the classes linked to the current user.
+  //use for loop to show them in the similar fashion as below.
+
+  
 
     // const drawerItems = [
     //     {text: }
