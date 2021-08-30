@@ -5,7 +5,7 @@ import {AuthContext} from '../AuthContext'
 
 const url = 'http://localhost:5000/home'
 
-export const signUp = (newUser) => axios.post(url,newUser).then((res) => {
+export const signUp = (newUser) => axios.post(url+"/signup",newUser).then((res) => {
     
     const {user, setUser} = useContext(UserContext);
     const {auth, setAuth} = useContext(AuthContext);
@@ -21,6 +21,7 @@ export const signUp = (newUser) => axios.post(url,newUser).then((res) => {
     }
 })
 .catch(err => console.log(err))
+export const signIn = (User) => axios.post(url+"/signin",User)
 export const Dashboard = () => axios.get(url)
 
 // effect, state context and store
