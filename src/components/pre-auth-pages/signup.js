@@ -17,7 +17,7 @@ import { useDispatch } from 'react-redux'
 import { signUp } from '../../actions/users'
 import { UserContext } from '../../UserContext';
 import { AuthContext } from '../../AuthContext';
-
+import {Redirect} from 'react-router-dom'
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -86,7 +86,6 @@ export default function SignUp() {
       })
       .catch(err => console.log(err));
   }
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -94,7 +93,7 @@ export default function SignUp() {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        {/* <div>{user.firstName}</div> */}
+        {auth ? (<Redirect to="/dashboard" />) : (console.log("Account already exists."))}
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>

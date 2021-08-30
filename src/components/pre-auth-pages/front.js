@@ -21,6 +21,7 @@ export const Front = () => {
                 <div className={classes.buttonContainer}>
                 <Button variant="contained" className={classes.buttonStyles} color="secondary" href="/signin"> Sign In </Button>
                 <Button variant="contained" className={classes.buttonStyles} color="primary" href="/signup"> Sign Up </Button>
+                {/* <Button variant="contained" className={classes.buttonStyles} color="light" href="/dashboard"> Dashboard </Button> */}
                 </div>
                 </div>
             </div>

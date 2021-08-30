@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Dashboard from './components/Dashboard.js'
 import {UserContext} from './UserContext'
 import {AuthContext} from './AuthContext'
+import Classroom from './components/classroom.js'
 
 const App = () => {
     const dispatch = useDispatch();
@@ -31,7 +32,9 @@ const App = () => {
         )} />
         <Route path='/signin' component={SignIn} />
         <Route path='/signup' component={SignUp} />
-        <Route path="/dashboard"> <Dashboard/> </Route>
+        
+        <Route path="/dashboard" component={Dashboard}/>
+        <Route path="/classroom" component={Classroom}/>
         </AuthContext.Provider>
         </UserContext.Provider>
         </Router>
