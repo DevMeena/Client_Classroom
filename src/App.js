@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import SignIn from './components/pre-auth-pages/signin'
 import SignUp from './components/pre-auth-pages/signup'
 import Front from './components/pre-auth-pages/front'
-import { signUp } from './actions/users'
+import { signUp, signIn } from './actions/users'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Dashboard from './components/Dashboard.js'
 import Classroom from './components/classroom.js'
@@ -12,8 +12,14 @@ const App = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        dispatch(signIn)
+    }, [dispatch])
+
+    useEffect(() => {
         dispatch(signUp)
     }, [dispatch])
+
+    
 
     return (
         <Router>

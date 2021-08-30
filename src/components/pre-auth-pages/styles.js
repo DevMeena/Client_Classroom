@@ -40,6 +40,13 @@ export default makeStyles(() => ({
         width: '200px',
         margin: '10px',
         marginLeft: '20px'
+    },
+    googleStyle: {
+        margin: "0 auto",
+        textAlign: "center",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     }
 
 }));

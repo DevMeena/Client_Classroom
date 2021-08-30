@@ -17,7 +17,7 @@ export const signIn = (user) => async (dispatch) => {
   try {
     const { data } = await api.signIn(user);
 
-    dispatch({ type: 'FETCH_ALL', payload: data });
+    dispatch({ type: 'CREATE', payload: data }); // FETCH_ALL
   } catch (error) {
     console.log(error.message);
   }
