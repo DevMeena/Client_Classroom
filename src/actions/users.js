@@ -12,12 +12,22 @@ export const signUp = (user) => async (dispatch) => {
     }
 };
 
-export const Dashboard = () => async (dispatch) => {
+export const signIn = (user) => async (dispatch) => {
   try {
-    const { data } = await api.Dashboard();
+    const { data } = await api.signIn(user);
 
     dispatch({ type: 'FETCH_ALL', payload: data });
   } catch (error) {
     console.log(error.message);
   }
 };
+
+// export const Dashboard = () => async (dispatch) => {
+//   try {
+//     const { data } = await api.Dashboard();
+
+//     dispatch({ type: 'FETCH_ALL', payload: data });
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// };

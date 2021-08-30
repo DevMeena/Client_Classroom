@@ -68,10 +68,11 @@ export default function SignUp() {
   const handleSubmit = async(e) => {
     e.preventDefault();
     //axios request to the backend
-    const url = 'http://localhost:5000/home';
+    const url = 'http://localhost:5000/home/signup';
     axios.post(url, userData)
       .then((res) => {
         let ok = res.data.Authenticated;
+        console.log(ok);
         if (ok) {
           setAuth(true);
           setUser(userData);
